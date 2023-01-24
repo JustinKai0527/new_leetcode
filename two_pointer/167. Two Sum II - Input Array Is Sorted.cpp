@@ -18,10 +18,7 @@ public:
             if(sum < target) {
                 i++;
                 continue;
-            }  else if(sum > target && i - 1 > 0 && numbers[i] < 0) {
-                i--;
-                continue;
-            }  else if(sum > target) {
+            } else if(sum > target) {
                 j--;
                 continue;
             }

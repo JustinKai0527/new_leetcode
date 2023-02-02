@@ -18,7 +18,7 @@ public:
             TreeNode* tmp = st.top();
             st.pop();
             vec.push_back(tmp->val);
-            if(tmp->right != NULL)  st.push(tmp->right);
+            if(tmp->right != NULL)  st.push(tmp->right);     //because FILO  so first push right
             if(tmp->left != NULL)  st.push(tmp->left);
         }
 

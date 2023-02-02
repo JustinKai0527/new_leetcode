@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stack>
+#include <queue>
 #include <vector>
 #include <algorithm>
 #include "tree.h"
@@ -67,5 +68,46 @@ public:
         reverse(vec.begin(), vec.end());              //mid left right -> right left mid
 
         return vec;
+    }
+};
+
+
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        queue<TreeNode*> que;
+        if (root != NULL) que.push(root);
+        vector<vector<int>> result;
+        while (!que.empty()) {
+            int size = que.size();
+            vector<int> vec(size);
+            for(int i = 0; i < size; i++) {
+                TreeNode* cur = que.front();
+                vec.push_back(cur->val);
+                if(cur->left == NULL)  que.push(cur->left);
+                if(cur->right == NULL)  que.push(cur->right);
+            }
+            result.push_back(vec);
+        }
+        return result;
+    }
+};
+
+
+class Solution {
+public:
+    void order(TreeNode* cur, vector<vector<int>>& result, int depth)
+    {
+        if (cur == nullptr) return;
+        if (result.size() == depth) result.push_back(vector<int>());
+        result[depth].push_back(cur->val);
+        order(cur->left, result, depth + 1);
+        order(cur->right, result, depth + 1);
+    }
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> result;
+        int depth = 0;
+        order(root, result, depth);
+        return result;
     }
 };

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <stack>
 #include "tree.h"
 
 using namespace std;
@@ -21,6 +22,28 @@ public:
     }
 };
 
+class Solution {
+    public:
+    long long maxVal = LONG_MIN;
+    bool isValidBST(TreeNode* root) {
+        stack<TreeNode*> st;
+        TreeNode* cur = root;
+        TreeNode* pre = NULL;
+        while(cur != NULL || !st.empty()) {
+            if(cur != NULL) {
+                st.push(cur);
+                cur = cur->left;        //left
+            }  else {
+                cur = st.top();         //turn back to the mid
+                st.pop();
+                if(pre != NULL && pre->val >= cur->val)  return false;
+                pre = cur;
+
+                cur = cur->right;
+            }
+        }
+    }
+};
 
 class Solution {
 public:

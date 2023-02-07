@@ -45,9 +45,7 @@ public:
             }  else {
 
                 if(n_ptr == 0)  h_ptr++;
-                else {
-                    n_ptr = lps[n_ptr - 1];
-                }
+                else  n_ptr = lps[n_ptr - 1];
             }
         }
 
